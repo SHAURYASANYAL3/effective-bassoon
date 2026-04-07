@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #c8d0ff;
+  background: #05050a;
+}
+
+* {
+  cursor: none;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #0f1428 0%, #05050a 48%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.06;
+  mix-blend-mode: soft-light;
+  background-image: radial-gradient(circle at 20% 20%, #fff 0.2px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+.section-shell {
+  @apply min-h-screen px-6 py-16 md:px-12 lg:px-24;
+}
+
+.glass-panel {
+  @apply rounded-2xl border border-slate-500/30 bg-slate-900/20 backdrop-blur-lg;
+}
+
+a,
+button,
+input,
+textarea {
+  transition: all 320ms ease;
+}
