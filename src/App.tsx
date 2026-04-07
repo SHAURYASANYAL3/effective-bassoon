@@ -20,8 +20,7 @@ const App = () => {
   return (
     <div className="relative min-h-screen text-slate-100">
       <CustomCursor />
-
-      <div className="fixed inset-0 -z-10 pointer-events-none opacity-95 [mask-image:radial-gradient(circle_at_center,black_45%,transparent_100%)]">
+      <div className="fixed inset-0 -z-10">
         <Suspense fallback={<div className="h-full w-full bg-void" />}>
           <VoidScene />
         </Suspense>

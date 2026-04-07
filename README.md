@@ -1,17 +1,8 @@
-# The Fool — Cinematic Observer Portfolio
+# The Fool — Cinematic Portfolio System
 
-A premium React + Vite implementation of a calm, dominant 3D intelligence layer that blends behind HTML content.
+A React + Vite + Tailwind + React Three Fiber build designed as a calm, psychologically dominant "observing system" for Shaurya Sanyal.
 
-## 1) Installation commands
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-## 2) Folder/file structure changes
+## Project structure
 
 ```txt
 src/
@@ -24,80 +15,33 @@ src/
       SkillsSection.tsx
       ContactSection.tsx
     three/
-      VoidScene.tsx            # Full R3F scene + post FX + parallax
+      VoidScene.tsx
     ui/
-      CustomCursor.tsx         # Dot -> ring cursor with glow interaction
+      CustomCursor.tsx
   data/
-    content.ts                 # Identity fragments, project artifacts, skills
+    content.ts
   hooks/
-    useObserverSignals.ts      # Idle / speed / scroll / click psych messages
+    useObserverSignals.ts
   shaders/
-    sigilMaterial.ts           # Custom glow + heartbeat + distortion shader
+    sigilMaterial.ts
   styles/
     index.css
   App.tsx
   main.tsx
 ```
 
-## 3) 3D scene implementation
+## Implementation notes
 
-The complete scene code is in:
+1. `VoidScene` renders the infinite void, fog, sigil, control rings, broken cubes (instanced), and particles.
+2. `useObserverSignals` tracks motion speed, idle time, and click count to emit dynamic psychological messages.
+3. Section components create the reveal flow: Entry → Landing → About → Artifacts → Skills → Contact.
+4. `CustomCursor` provides dot/ring pulse behavior.
+5. Scene is lazy loaded for startup performance.
 
-- `src/components/three/VoidScene.tsx`
-- `src/shaders/sigilMaterial.ts`
+## Run
 
-It includes:
-- Infinite void + fog
-- Central arcane torus knot with fresnel neon shader
-- Rotating control rings
-- Instanced drifting shards/cubes
-- Reactive particles (4500 positions)
-- Intentional-delay camera parallax
-- Post processing: Bloom + subtle noise + chromatic edge distortion + vignette
-
-## 4) Integrate into existing HTML (step-by-step)
-
-### Option A — Fullscreen fixed background (current setup)
-1. Keep the `VoidScene` in `App.tsx` within a fixed wrapper:
-   - `position: fixed; inset: 0; z-index: -10; pointer-events: none;`
-2. Keep the HTML sections in normal flow above it.
-3. Preserve the radial mask + opacity blend for cinematic depth.
-
-### Option B — Targeted container scene
-1. Create a container block where you want the 3D layer:
-   ```tsx
-   <div className="relative h-[70vh]">
-     <VoidScene />
-   </div>
-   ```
-2. Remove `fixed inset-0` wrapper classes.
-3. Use `absolute inset-0` for overlays and text.
-4. If user interaction with 3D objects is needed, remove `pointer-events-none` from the scene wrapper.
-
-## 5) Shader examples
-
-`sigilMaterial.ts` uses custom GLSL with:
-- Fresnel edge glow
-- Heartbeat pulse via `uHeartbeat`
-- Soft geometric distortion using hashed wave noise
-- Pointer influence via `uPointer`
-
-## 6) Optimization tips (desktop + mobile)
-
-- Keep `dpr={[1, 1.75]}` to cap excessive retina cost.
-- Use instancing for repeated fragments (`instancedMesh`).
-- Avoid high-overdraw transparencies and expensive dynamic lights.
-- Disable MSAA in WebGL and use bloom softly.
-- Keep post FX subtle and minimal pass count.
-- Lazy-load the scene (`React.lazy + Suspense`).
-- Mobile mode option: reduce particles from 4500 -> 1800 and shards from 80 -> 40.
-
-## Resize handling
-
-`<Canvas>` handles resize automatically in React Three Fiber. If you embed in a dynamic container, ensure parent dimensions are explicitly controlled (`height/width` CSS).
-
-## Blend with existing UI
-
-- Keep scene behind content (`z-index` negative or lower layer)
-- Keep scene non-blocking (`pointer-events: none`) for standard UI
-- Add custom cursor and observer messages for the “aware system” feel
+```bash
+npm install
+npm run dev
+npm run build
+```
