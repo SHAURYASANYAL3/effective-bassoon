@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #c8d0ff;
+  background: #05050a;
+}
+
+* {
+  cursor: none;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #11152b 0%, #05050a 50%);
+}
+
+.section-shell {
+  @apply min-h-screen px-6 py-16 md:px-12 lg:px-24;
+}
+
+.glass-panel {
+  @apply rounded-2xl border border-slate-500/30 bg-slate-900/20 backdrop-blur-lg;
+}
